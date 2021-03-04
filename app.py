@@ -15,8 +15,8 @@ def index():
     return render_template('index.html')
 
 @app.route('/index', methods=['POST'])
-def calc_file():
-  """Calculates User Specified Products"""
+def metadata():
+  """Fetches metadata from SeaBASS file and exports as CSV"""
 
   # Gather specified request
   metadata = request.form.get('metadata')
