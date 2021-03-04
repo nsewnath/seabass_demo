@@ -1,6 +1,4 @@
 # SeaBASS Data Product Demo
-SeaBASS Metadata Extraction
-
 This is a small demo of using a web application interface to extract data from a SeaBASS file. Other functions could be added to this in the future. 
 
 SB_support.py from https://seabass.gsfc.nasa.gov/wiki/readsb_python
