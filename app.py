@@ -43,11 +43,12 @@ def metadata():
                   attachment_filename='metadata.csv',
                   as_attachment=True)
 
-  # This can be used if a SeaBASS file needs to be returned
-  #data.writeSBfile("./new_data.sb")
-  #return send_file('./new_data.sb',
-  #                attachment_filename='new_data.sb',
-  #                as_attachment=True)
+  else:
+  # Return the original SeaBASS File
+    data.writeSBfile("./unmodified_data.sb")
+    return send_file('./unmodified_data.sb',
+                    attachment_filename='unmodified_data.sb',
+                    as_attachment=True)
 
 if __name__ == '__main__':
     app.run(debug=True)
