@@ -16,7 +16,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/index', methods=['POST'])
-def metadata():
+def routine():
   """Fetches SeaBASS file and exports selected data in CSV format"""
 
   # Gather routine request
