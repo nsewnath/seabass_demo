@@ -5,6 +5,7 @@ from flask import render_template, redirect, send_file
 import pandas as pd
 import numpy as np
 import os
+import zipfile
 from SB_support import *
 
 app = Flask(__name__)
@@ -16,10 +17,10 @@ def index():
 
 @app.route('/index', methods=['POST'])
 def metadata():
-  """Fetches metadata from SeaBASS file and exports as CSV"""
+  """Fetches SeaBASS file and exports selected data in CSV format"""
 
-  # Gather specified request
-  metadata = request.form.get('metadata')
+  # Gather routine request
+  routine = request.form.get('routine')
 
   # Gather file
   file = request.files['file']
@@ -30,7 +31,7 @@ def metadata():
   # Read SeaBASS File
   data = readSB(filename = path, no_warn = True)
 
-  if metadata:
+  if routine == 'metadata':
     # Create new dataframe and assign ordered list keys and values as columns
     new_df = pd.DataFrame()
     new_df = new_df.assign(Labels = data.headers.keys())
@@ -42,9 +43,20 @@ def metadata():
     return send_file('./metadata.csv',
                   attachment_filename='metadata.csv',
                   as_attachment=True)
+  elif routine == 'table':
+    # Create new dataframe from SEAbass data table
+    new_df = pd.DataFrame(data.data)
+
+    # Outputting file to user
+    redirect('http://localhost:5000')
+    new_df.to_csv('./data_table.csv')
+    return send_file('./data_table.csv',
+                  attachment_filename='data_table.csv',
+                  as_attachment=True)
 
   else:
   # Return the original SeaBASS File
+    redirect('http://localhost:5000')
     data.writeSBfile("./unmodified_data.sb")
     return send_file('./unmodified_data.sb',
                     attachment_filename='unmodified_data.sb',

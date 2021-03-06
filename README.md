@@ -8,7 +8,7 @@ SeaBASS files only.
 Test file from https://seabass.gsfc.nasa.gov/archive/BIGELOW/BALCH/AL9807/archive
 
 # Outputs 
-CSV file containing SeaBASS Metadata Labels and Data if routine is selected. Otherwise it will return the original SeaBASS file unmodified. 
+CSV files for metadata and data table (depending on user selection). If no routine is selected then the original SeaBASS file will be returned unmodified. 
 
 # How to Run: 
 1. Navigate to the project folder in Command Prompt/Terminal.
