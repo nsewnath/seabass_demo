@@ -43,6 +43,7 @@ def routine():
     return send_file('./metadata.csv',
                   attachment_filename='metadata.csv',
                   as_attachment=True)
+
   elif routine == 'table':
     # Create new dataframe from SEAbass data table
     new_df = pd.DataFrame(data.data)
