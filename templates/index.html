@@ -11,7 +11,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand px-3">
-      <img src="../static/images/SSAI-Logo.png" alt="" width="62" height="62">
+      <img src="../static/images/SSAI-Logo.png" alt="SSAI-Logo" width="62" height="62">
     </a>
     <h1 class="navbar-nav mb-2" style="color: #0d1e72; font-weight: 700;">
       SeaBASS Data Products
@@ -20,8 +20,7 @@
   </nav>
 
   <div class="container my-3">
-    <form action = "http://localhost:5000/index" method = "POST" 
-    enctype = "multipart/form-data">
+    <form action = "http://localhost:5000/index" method = "POST" enctype = "multipart/form-data">
         <fieldset class="row mb-3">
           <label for="selectFile" class="col-form-label col-sm-3 pt-0">Choose SeaBASS file </label>
           <div class="col-sm-6">
@@ -29,9 +28,6 @@
           </div>
         </fieldset>
   
-
-        </fieldset>
-
         <fieldset class="row mb-3">
           <legend class="col-form-label col-sm-3 pt-0">Select a Routine</legend>
           <div class="col-sm-9">
@@ -39,14 +35,26 @@
               <input class="form-check-input" type="radio" name= "routine" value= "metadata" >
               <label class="form-check-label" for="linear"> Export Metadata as CSV </label>
             </div>
+
             <div class="form-check">
               <input class="form-check-input" type="radio" name= "routine" value="table" >
               <label class="form-check-label" for="linear"> Export Data Table as CSV </label>
+
+            <div class = "reveal-if-active">
+              <input type = "checkbox" name = "time" id = "time" value ="True">
+              <label for = "time" >Add Concatenated Time</label>
             </div>
 
-        </fieldset>
-        
-        
+            <div class = "reveal-if-active">
+               <input type = "checkbox" name = "date" id = "date" value ="True" >
+              <label for = "date" >Add Concatenated Date</label>
+            </div>
+
+            </div>
+
+          </fieldset>
+
+       
         <div class="row mb-3">
           <div class="col-sm-3"></div>
           <button type='submit' class='col-sm-2 btn btn-primary' style="background-color: #0d1e72; border-color: #0d1e72;"> Start </button>

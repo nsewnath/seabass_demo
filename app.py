@@ -5,7 +5,6 @@ from flask import render_template, redirect, send_file
 import pandas as pd
 import numpy as np
 import os
-import zipfile
 from SB_support import *
 
 app = Flask(__name__)
@@ -21,6 +20,8 @@ def routine():
 
   # Gather routine request
   routine = request.form.get('routine')
+  time = request.form.get('time')
+  date = request.form.get('date')
 
   # Gather file
   file = request.files['file']
@@ -44,8 +45,19 @@ def routine():
                   attachment_filename='metadata.csv',
                   as_attachment=True)
   elif routine == 'table':
-    # Create new dataframe from SEAbass data table
+    # Create new dataframe from SeaBASS data table
     new_df = pd.DataFrame(data.data)
+
+    if time:
+      # Creates a column that concatenates the hour and minute columns to XX:XX format
+      new_df = new_df.assign(mod_minute = new_df["minute"].apply(str))
+      new_df['mod_minute'] = new_df['mod_minute'].apply(lambda x: x.zfill(2))
+      new_df = new_df.assign(complete_time = new_df["hour"].apply(str) + ":" + new_df["mod_minute"])
+      new_df = new_df.drop(columns = "mod_minute")
+
+    if date:
+      # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
+      new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
 
     # Outputting file to user
     redirect('http://localhost:5000')
