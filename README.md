@@ -17,5 +17,5 @@ If no routine is selected then the original SeaBASS file will be returned unmodi
 2. Make sure you have all of the dependencies installed (namely Pandas and Flask)
 3. Run the python file [app.py](http://app.py) (you can use command python app.py).
 4. Navigate to [http://localhost:5000/](http://localhost:5000/).
-5. Select a SEABass file and specify routine. 
+5. Select a SeaBASS file and specify routine. 
 
