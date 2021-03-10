@@ -8,7 +8,7 @@ SeaBASS files only.
 Test file from https://seabass.gsfc.nasa.gov/archive/BIGELOW/BALCH/AL9807/archive
 
 # Outputs 
-CSV files for metadata or data table export. Additionally, options of adding the time in XX:XX format as well as the date in DAY/MONTH/YEAR format are now avaliable for the data table routine.
+CSV files for metadata or data table export. Additionally, options for adding the time in XX:XX format as well as the date in DAY/MONTH/YEAR format are now avaliable for the data table routine.
 
 If no routine is selected then the original SeaBASS file will be returned unmodified. 
 
