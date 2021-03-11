@@ -10,7 +10,7 @@ Test file from https://seabass.gsfc.nasa.gov/archive/BIGELOW/BALCH/AL9807/archiv
 # Outputs 
 CSV files for metadata or data table export. Options for adding the time in XX:XX format as well as the date in DAY/MONTH/YEAR format are avaliable for the data table routine. Additionally, now users can select the Add Extras to SeaBASS feature, which will allow the user to add concatenated time or date directly to the original SeaBASS file. 
 
-If no routine is selected then the original SeaBASS file will be returned unmodified. 
+If no routine is selected for the Add Extras to SeaBass feature, then the original SeaBASS file will be returned unmodified. 
 
 # How to Run: 
 1. Navigate to the project folder in Command Prompt/Terminal.
