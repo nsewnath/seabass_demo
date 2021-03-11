@@ -94,10 +94,8 @@ def routine():
       # Modifying headers
       fields = data.headers['fields']
       units = data.headers['units']
-      new_field = fields + "," + "completed_time"
-      new_unit = units + "," + "hh:mm"
-      data.headers['fields']  = new_field
-      data.headers['units'] = new_unit
+      data.headers['fields']  = fields + "," + "completed_time"
+      data.headers['units'] = units + "," + "hh:mm"
 
     if date2:
     # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
@@ -106,10 +104,8 @@ def routine():
       # Modifying headers
       fields = data.headers['fields']
       units = data.headers['units']
-      new_field = fields + "," + "completed_year"
-      new_unit = units + "," + "dd/mm/yyyy"
-      data.headers['fields']  = new_field
-      data.headers['units'] = new_unit
+      data.headers['fields']  = fields + "," + "completed_year"
+      data.headers['units'] = units + "," + "dd/mm/yyyy"
 
     # Return the original SeaBASS File
     new_data = OrderedDict(new_df)
