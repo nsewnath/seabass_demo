@@ -91,12 +91,11 @@ def routine():
       new_df = new_df.assign(complete_time = new_df["hour"].apply(str) + ":" + new_df["mod_minute"])
       new_df = new_df.drop(columns = "mod_minute")
 
+      # Modifying headers
       fields = data.headers['fields']
       units = data.headers['units']
-
       new_field = fields + "," + "completed_time"
       new_unit = units + "," + "hh:mm"
-
       data.headers['fields']  = new_field
       data.headers['units'] = new_unit
 
@@ -104,12 +103,11 @@ def routine():
     # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
       new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
 
+      # Modifying headers
       fields = data.headers['fields']
       units = data.headers['units']
-
       new_field = fields + "," + "completed_year"
       new_unit = units + "," + "dd/mm/yyyy"
-
       data.headers['fields']  = new_field
       data.headers['units'] = new_unit
 
