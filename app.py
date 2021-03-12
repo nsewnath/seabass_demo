@@ -3,6 +3,9 @@ Web Application for Data Extraction of a SeaBASS File using Flask.
 
 Author: Neeka Sewnath, nsewnath@ufl.edu
 
+Note: SB_support.py is a SeaBASS Data Manipulation script that was written by Joel Scott (SAIC) and was downloaded from 
+https://seabass.gsfc.nasa.gov/wiki/readsb_python
+
 """
 
 from flask import Flask
