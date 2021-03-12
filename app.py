@@ -25,10 +25,14 @@ def mod_time(new_df):
   new_df = new_df.drop(columns = "mod_minute")
   return new_df
 
+#==========================================================================================================================================
+
 def mod_date(new_df):
   """Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR"""
   new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
   return new_df
+
+#==========================================================================================================================================
 
 def return_csv(new_df, name):
   """Outputs csv file to user"""
