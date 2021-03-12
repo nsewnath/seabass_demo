@@ -4,29 +4,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <link rel= "stylesheet" type= "text/css" href="../static/main.css">
+  <link rel= "stylesheet" type= "text/css" href="./../static/main.css">
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script>
-      $(document).ready(function(){
-          $(".form").hide();
-          $(".form1").hide();
-
-          $(".form-check2").click(function(){
-            $(".form").show();
-            $(".form1").hide();
-          })
-
-          $(".form-check3").click(function(){
-            $(".form1").show();
-            $(".form").hide();
-          })
-
-          $(".form-check1").click(function(){
-            $(".form").hide();
-            $(".form1").hide();
-          })
-      });
-  </script>
+  <script src ="./../static/main.js"></script>
 </head>
 <body style="background-color: #ffffff; color: #262730; font-family: 'Red Hat Text'; font-size:18px;">
   <nav class="navbar navbar-expand-lg navbar-light">
@@ -55,27 +35,27 @@
             <div class="form-check2">
               <input class="form-check-input" type="radio" name= "routine" value="table" >
               <label class="form-check-label" > Export Data Table as CSV </label>
-                <div class = "form">
-                    <input type = "checkbox" name = "time1" id = "time1" value ="True">
-                    <label for = "time1" >Add Concatenated Time</label>
-                </div>
-                <div class = "form">
-                    <input type = "checkbox" name = "date1" id = "date1" value ="True" >
-                    <label for = "date1" >Add Concatenated Date</label>
-                </div>  
+                <ul class = "form">
+                    <input type = "checkbox" name = "time" id = "time" value ="True">
+                    <label for = "time1" >Add Time in HH:MM Format</label>
+                </ul>
+                <ul style="margin-top:-15px;margin-bottom:1px" class = "form">
+                    <input type = "checkbox" name = "date" id = "date" value ="True" >
+                    <label for = "date1" >Add Date in DD/MM/YYYY Format</label>
+                </ul>  
             </div>
             <div class="form-check3">
                 <input class="form-check-input" type="radio" name= "routine" value="modsb" >
                 <label class="form-check-label" > Add Extras to SeaBASS File </label>
-                  <div class = "form1">
-                      <input type = "checkbox" name = "time2" id = "time2" value ="True">
-                      <label for = "time2" >Add Concatenated Time</label>
-                  </div>
-                  <div class = "form1">
-                      <input type = "checkbox" name = "date2" id = "date2" value ="True" >
-                      <label for = "date2" >Add Concatenated Date</label>
-                  </div>  
-              </div>         
+                  <ul class = "form1">
+                      <input type = "checkbox" name = "time" id = "time" value ="True">
+                      <label for = "time2" >Add Time in HH:MM Format</label>
+                  </ul>
+                  <ul style="margin-top:-15px;margin-bottom:1px" class = "form1">
+                      <input type = "checkbox" name = "date" id = "date" value ="True" >
+                      <label for = "date2" >Add Date in DD/MM/YYYY Format</label>
+                  </ul>  
+            </div> 
           </fieldset>
         <div class="row mb-3">
           <div class="col-sm-3"></div>
