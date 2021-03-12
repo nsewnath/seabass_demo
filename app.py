@@ -30,6 +30,14 @@ def mod_date(new_df):
   new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
   return new_df
 
+def return_csv(new_df, name):
+  """Outputs csv file to user"""
+  redirect('http://localhost:5000')
+  new_df.to_csv('./' + name + '.csv')
+  return send_file('./' + name + '.csv',
+                    attachment_filename='./' + name + '.csv',
+                    as_attachment=True)
+
 #==========================================================================================================================================
 
 app = Flask(__name__)
@@ -64,10 +72,8 @@ def routine():
     new_df = new_df.assign(Data = data.headers.values())
 
     # Outputting file to user
-    new_df.to_csv('./metadata.csv')
-    return send_file('./metadata.csv',
-                    attachment_filename='./metadata.csv',
-                    as_attachment=True)
+    name = "metadata"
+    return return_csv(new_df, name)
 
   elif routine == 'table':
   # Create new dataframe from SeaBASS data table
@@ -80,14 +86,11 @@ def routine():
       new_df = mod_date(new_df)
 
     # Outputting file to user
-    new_df.to_csv('./data_table.csv')
-    return send_file('./data_table.csv',
-                  attachment_filename='data_table.csv',
-                  as_attachment=True)
+    name = "data_table"
+    return return_csv(new_df, name)
 
   elif routine == 'modsb':
   # Outputs SeaBASS file with add-ons
-
     new_df = pd.DataFrame(data.data)
 
     if time:
