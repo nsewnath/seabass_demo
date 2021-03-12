@@ -95,7 +95,7 @@ def routine():
       fields = data.headers['fields']
       units = data.headers['units']
       data.headers['fields']  = fields + "," + "completed_time"
-      data.headers['units'] = units + "," + "hh:mm"
+      data.headers['units'] = units + "," + "hh:mn"
 
     if date2:
     # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
