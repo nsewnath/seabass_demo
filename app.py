@@ -17,6 +17,21 @@ from SB_support import *
 
 #==========================================================================================================================================
 
+def mod_time(new_df):
+  """Creates a column that concatenates the hour and minute columns to XX:XX format"""
+  new_df = new_df.assign(mod_minute = new_df["minute"].apply(str))
+  new_df['mod_minute'] = new_df['mod_minute'].apply(lambda x: x.zfill(2))
+  new_df = new_df.assign(complete_time = new_df["hour"].apply(str) + ":" + new_df["mod_minute"])
+  new_df = new_df.drop(columns = "mod_minute")
+  return new_df
+
+def mod_date(new_df):
+  """Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR"""
+  new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
+  return new_df
+
+#==========================================================================================================================================
+
 app = Flask(__name__)
 CORS(app)
 
@@ -30,10 +45,8 @@ def routine():
 
   # Gather routine request
   routine = request.form.get('routine')
-  time1 = request.form.get('time1')
-  date1 = request.form.get('date1')
-  time2 = request.form.get('time2')
-  date2 = request.form.get('date2')
+  time = request.form.get('time')
+  date = request.form.get('date')
 
   # Gather file
   file = request.files['file']
@@ -61,16 +74,11 @@ def routine():
   # Create new dataframe from SeaBASS data table
     new_df = pd.DataFrame(data.data)
 
-    if time1:
-    # Creates a column that concatenates the hour and minute columns to XX:XX format
-      new_df = new_df.assign(mod_minute = new_df["minute"].apply(str))
-      new_df['mod_minute'] = new_df['mod_minute'].apply(lambda x: x.zfill(2))
-      new_df = new_df.assign(complete_time = new_df["hour"].apply(str) + ":" + new_df["mod_minute"])
-      new_df = new_df.drop(columns = "mod_minute")
+    if time:
+      new_df = mod_time(new_df)
 
-    if date1:
-    # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
-      new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
+    if date:
+      new_df = mod_date(new_df)
 
     # Outputting file to user
     redirect('http://localhost:5000')
@@ -84,12 +92,8 @@ def routine():
 
     new_df = pd.DataFrame(data.data)
 
-    if time2:
-    # Creates a column that concatenates the hour and minute columns to XX:XX format
-      new_df = new_df.assign(mod_minute = new_df["minute"].apply(str))
-      new_df['mod_minute'] = new_df['mod_minute'].apply(lambda x: x.zfill(2))
-      new_df = new_df.assign(complete_time = new_df["hour"].apply(str) + ":" + new_df["mod_minute"])
-      new_df = new_df.drop(columns = "mod_minute")
+    if time:
+      new_df = mod_time(new_df)
 
       # Modifying headers
       fields = data.headers['fields']
@@ -97,9 +101,8 @@ def routine():
       data.headers['fields']  = fields + "," + "completed_time"
       data.headers['units'] = units + "," + "hh:mn"
 
-    if date2:
-    # Creates a column that concatenates the day, month, and year to international standard DAY/MONTH/YEAR
-      new_df = new_df.assign(complete_date = new_df["day"].apply(str) + "/" + new_df["month"].apply(str) + "/" + new_df["year"].apply(str))
+    if date:
+      new_df = mod_date(new_df)
 
       # Modifying headers
       fields = data.headers['fields']
