@@ -64,11 +64,10 @@ def routine():
     new_df = new_df.assign(Data = data.headers.values())
 
     # Outputting file to user
-    redirect('http://localhost:5000')
     new_df.to_csv('./metadata.csv')
     return send_file('./metadata.csv',
-                  attachment_filename='metadata.csv',
-                  as_attachment=True)
+                    attachment_filename='./metadata.csv',
+                    as_attachment=True)
 
   elif routine == 'table':
   # Create new dataframe from SeaBASS data table
@@ -81,7 +80,6 @@ def routine():
       new_df = mod_date(new_df)
 
     # Outputting file to user
-    redirect('http://localhost:5000')
     new_df.to_csv('./data_table.csv')
     return send_file('./data_table.csv',
                   attachment_filename='data_table.csv',
@@ -115,7 +113,6 @@ def routine():
     data.data = new_data
 
     # Return the original SeaBASS File
-    redirect('http://localhost:5000')
     data.writeSBfile("./seabass_w_extras.sb")
     return send_file('./seabass_w_extras.sb',
                     attachment_filename='seabass_w_extras.sb',
